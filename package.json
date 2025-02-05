@@ -1,0 +1,16 @@
+{
+  "name": "rainball",
+  "version": "1.0.0",
+  "description": "This was the final project for my Creative Coding course. It's an endless scroll 3D web game made using WebGL and Three.js in addition to some other libraries used to allow controls via Xbox controller. I made my own 3D models for the game and found some textures online. I used some texture movement trickery to make it look like the ball is moving and the ground appear to come closer to the screen, when in reality the ball just jumps up and down while the obstacles move towards the screen. This gives the illusion of movement, without having to make the ball move forward forever while rendering new ground. The idea behind the game was inspired by those addicting mobile games that go on forever and are really difficult to put down.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . GameName --platform=win32 --arch=x64 --out=dist/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^34.0.2"
+  }
+}

@@ -376,7 +376,7 @@ function handleControllerInput() {
 
     const stickThreshold = 0.1; // Adjust the threshold for stick sensitivity
 
-    // Move left or right
+    // Move left or right - CONTROLLER
     const stickX = controller.axes[0];
     if (Math.abs(stickX) > stickThreshold) {
         ballVelocity.x = stickX * ballSpeed;
@@ -395,6 +395,33 @@ function handleControllerInput() {
     else if (!jumpButtonPressed) {
         jumpFlag = false;
     }
+}
+
+function handleKeyboardInput() {
+    // Keyboard movement
+    const jumpButtonPressed = false;
+    const jumpFlag = false;
+    window.addEventListener("keydown", (event) => {
+        if (event.code === "KeyA") {
+            ballVelocity.x = -1 * ballSpeed;
+        } else if (event.code === "KeyD") {
+            ballVelocity.x = ballSpeed;
+        } else if (event.code === "KeyW") {
+            if (!jumpFlag) {
+                jumpButtonPressed = true;
+            }
+            if (jumpButtonPressed && ball.position.y <= slopeHeight + ballRadius && !falling) {
+                ballVelocity.y = 0.49; // Adjust the jump velocity as needed
+                jumpFlag = true;
+            } else if (!jumpButtonPressed) {
+                jumpFlag = false;
+            }
+        }
+    });
+
+    window.addEventListener("keyup", (event) => {
+        
+    });
 }
 
 let ballRotate = 0.08;
@@ -504,6 +531,8 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 
     handleControllerInput();
+    handleKeyboardInput();
+
     updateBallPosition();
     updateBallRotation();
     fog.color = fogColor;
